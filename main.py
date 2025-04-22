@@ -24,3 +24,8 @@ async def upload_image(file: UploadFile = File(...)):
     result = run_inference(temp_path)
     os.remove(temp_path)
     return result
+
+# ✅ Add this block so Azure can start it with gunicorn
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
